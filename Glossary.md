@@ -1,3 +1,5 @@
+#Glossary of Linux Commands
+
 **ls** - List Segments. Shows what's in a directory. Use `-l` for details, `-a` for hidden files.
 ```
 	~$ ls
