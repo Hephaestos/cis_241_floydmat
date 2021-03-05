@@ -14,3 +14,10 @@ sed -nE 's/#\s*define\s// p' /usr/include/limits.h > clean_limits.h
 sed -i.ORIG 's/gattaca/@@GREAT MOVIE@@/g' dna.txt
 
 #6
+sed -f ascii.sed /home/woodriir/241/file > decoded
+
+#7
+sed -n '51,$G;h;$!d;p' ~/241/lyrics > ending_lyrics
+
+#8
+
