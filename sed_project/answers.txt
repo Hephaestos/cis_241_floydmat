@@ -20,4 +20,4 @@ sed -f ascii.sed /home/woodriir/241/file > decoded
 sed -n '51,$G;h;$!d;p' ~/241/lyrics > ending_lyrics
 
 #8
-
+./hwinfo
