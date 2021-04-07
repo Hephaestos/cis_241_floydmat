@@ -1,14 +1,19 @@
+/**
+ * Sorting Assignment
+ * CIS 241 Section 02
+ * Winter 2020
+ *
+ * @author Daniel Floyd
+ * @version 1.0
+ */
 #include "file_lib.h"
 #include "sorter.h"
 #include <stdio.h>
 	
 /*
- * Read the file from the command-line.
  * Usage:
  * ./a.out FILE_TO_READ FILE_TO_WRITE
- *
  */
-
 int main(int argc, char** argv){
 	if(argc != 3) {
 		printf("Usage: ./a.out FILE_TO_READ FILE_TO_WRITE\n");
@@ -19,12 +24,18 @@ int main(int argc, char** argv){
 
 	// Read the original file.
 	char* contents;
-	size_t size = load_file(read_filename, &contents);
+	size_t file_size = load_file(read_filename, &contents);
 
-	// Sort the file with the function you wrote.
+	// Find the number of words in the file
+	int size = 0;
+	for(int i=0; i<file_size; i++) {
+		if(contents[i] == '\n') size++;
+	}
+	// Sort the file.
 	sort(&contents, size);
 
 	// Write out the new file.
-	save_file(write_filename, contents, size);
+	save_file(write_filename, contents, file_size);
+	free(contents);
 	return 0;
 }
