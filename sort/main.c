@@ -19,6 +19,8 @@ int main(int argc, char** argv){
 		printf("Usage: ./a.out FILE_TO_READ FILE_TO_WRITE\n");
 		return 1;
 	}
+
+	// get filenames from args
 	char* read_filename = argv[1];
 	char* write_filename = argv[2];
 

@@ -37,7 +37,8 @@ void swap(char** a, char** b) {
 }
 
 /**
- * A recursive implementation of the quicksort algorithm
+ * A recursive implementation of the quicksort
+ * algorithm with random pivot
  * @param char** a - The array of strings to sort
  * @param int left - The index of the array to start sorting at
  * @param int right - The index of the array to stop sorting at
@@ -55,10 +56,10 @@ void quicksort(char** a, int left, int right) {
 	int j = right-1;
 	while(1)
 	{
-		while(strcmp(a[i],pivot) < 0) {
+		while(strcasecmp(a[i],pivot) < 0) {
 			i++;
 		}
-		while(j >= left && strcmp(pivot,a[j]) < 0){
+		while(j >= left && strcasecmp(pivot,a[j]) < 0){
 			j--;
 		}
 		if(i >= j) break;
@@ -78,28 +79,23 @@ void quicksort(char** a, int left, int right) {
  * @param int size - the number of words in the string
  */
 void sort(char** contents, int size) {
-	// count the number of words and the length of the longest word
 	int r = size; // the number of words
 	int c = 0; // the length of the longest word
 	int file_size = 0; // the number of bytes in the input file
+	int length = 0; // counter for word length
 
 	// find the length of the file and the length of the longest word
-	int length = 0;
-	// for each word in the file
 	for(int i=0; i<r; i++) {
 		// count the letters in the word
 		while((*contents)[file_size++] != '\n') {
 			length++;
-			if(length > c) {
-				c = length;
-			}
+			c = (length > c) ? length : c;
 		}
 		length = 0;
 	}
 
 	// allocate a 2d char array of size r*c
-	char** a;
-	a = (char **)malloc(r * sizeof(char*));
+	char** a = (char **)malloc(r * sizeof(char*));
 	for(int i=0; i<r; i++) {
 		a[i] = (char*)malloc(c * sizeof(char));
 	}
@@ -109,8 +105,7 @@ void sort(char** contents, int size) {
 	int k = 0;
 	for(int i=0; i<file_size; i++) {
 		if((*contents)[i] == '\n') {
-			a[j][k] = '\0';
-			j++;
+			a[j++][k] = '\0';
 			k = 0;
 		} else {
 			a[j][k++] = (*contents)[i];
@@ -121,18 +116,15 @@ void sort(char** contents, int size) {
 	quicksort(a,0,r-1);
 
 	// convert array back to string
-	char* output = malloc(file_size);
-	strcpy(output,"");
+	strcpy(*contents,"");
 	for(int i=0; i<r; i++){
-		strcat(output,a[i]);
-		strcat(output,"\n");
+		strcat(*contents,a[i]);
+		strcat(*contents,"\n");
 	}
-	strcpy(*contents,output);
 
 	// set them free
 	for(int i=0; i<r; i++) {
 		free(a[i]);
 	}
 	free(a);
-	free(output);
 }

@@ -1,0 +1,1 @@
+sed 's/\"\"/\"\n\"/g' midterm.csv | sed '1d; /^$/d' | sort -t , -k 2,2 -k 1,1 | awk -F, 'BEGIN {OFS=","} {print $1,$2,$4}' | sed '/Lilianna/d' | sed 's/\"//g' | md5sum
