@@ -163,8 +163,8 @@ double quadratic(double a, double b, double c){
 #include <stdio.h>
 void capitalize(char* str, size_t len){
 	for(int i=0; i<len; ++i) {
-		if(str[i] > 'a' && str[i] < 'z') {
-			str[i] = str[i] + 'A';
+		if(str[i] >= 'a' && str[i] <= 'z') {
+			str[i] = str[i] - 32;
 		}
 	}
 }
