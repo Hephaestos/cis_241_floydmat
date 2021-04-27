@@ -145,7 +145,7 @@ void seven(Student** students){
  * -b + sqrt(b^2 - 4ac) / (2a)
  */
 double quadratic(double a, double b, double c){
-	return -b + sqrt(pow(b,2) - 4 * a * c) / 2 * a;
+	return ((b * -1) + sqrt(pow(b,2) - (4 * a * c))) / (2 * a);
 }
 
 /**
